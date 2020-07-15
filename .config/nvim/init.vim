@@ -7,6 +7,7 @@ Plug 'neomake/neomake'
 Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete-clangx'
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'jiangmiao/auto-pairs'
@@ -53,7 +54,13 @@ let g:deoplete#enable_at_startup = 1
 set splitbelow
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" jedi-vim config
+" deoplete clang config
+call deoplete#custom#var('clangx', 'clang_binary', '/usr/bin/clang')
+call deoplete#custom#var('clangx', 'default_c_options', '')
+call deoplete#custom#var('clangx', 'default_cpp_options', '')
+
+
+"" jedi-vim config
 " disable autocompletion, cause we use deoplete for completion
 let g:jedi#completions_enabled = 0
 " open the go-to function in split, not another buffer
