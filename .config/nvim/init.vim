@@ -1,31 +1,34 @@
 " plugins
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neomake/neomake'
 Plug 'sheerun/vim-polyglot'
-Plug 'joshdick/onedark.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/deoplete-clangx'
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'dense-analysis/ale'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'psliwka/vim-smoothie'
+Plug 'tpope/vim-fugitive'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 let mapleader = ","
 nnoremap <leader>t :new term://bash<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" color scheme
+set background=dark
+colorscheme gruvbox8
+
+" airline config
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='angr'
 
 " syntax highlighting
 syntax enable
-
-"color scheme
-colorscheme onedark
-set background = "dark"
-let g:airline_theme='onedark'
-let g:airline_powerline_fonts = 1
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " tabs instead of spaces
 set tabstop=4
@@ -44,28 +47,3 @@ set showtabline=2
 set incsearch
 set hlsearch
 nnoremap <leader><space> :nohlsearch<CR>
-
-" NerdTree stuff
-map <C-o> :NERDTreeToggle<CR>
-nmap <leader>r :NERDTreeFocus<cr>R<c-w><c-p>
-
-" deoplete config
-let g:deoplete#enable_at_startup = 1
-set splitbelow
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" deoplete clang config
-call deoplete#custom#var('clangx', 'clang_binary', '/usr/bin/clang')
-call deoplete#custom#var('clangx', 'default_c_options', '')
-call deoplete#custom#var('clangx', 'default_cpp_options', '')
-
-
-"" jedi-vim config
-" disable autocompletion, cause we use deoplete for completion
-let g:jedi#completions_enabled = 0
-" open the go-to function in split, not another buffer
-let g:jedi#use_splits_not_buffers = "right"
-
-" neomake config
-let g:neomake_python_enabled_makers = ['flake8']
-call neomake#configure#automake('w')
