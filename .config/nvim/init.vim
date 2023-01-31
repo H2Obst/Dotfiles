@@ -24,6 +24,8 @@ let mapleader = ","
 tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
+nnoremap <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+
 " airline config
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
