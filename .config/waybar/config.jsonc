@@ -1,0 +1,70 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "spacing": 4,
+    "modules-left": ["custom/power", "hyprland/workspaces", "hyprland/submap"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "tray", "clock", "custom/nvidia_gpu"],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{name}: {windows}",
+        "window-rewrite-default": "",
+        "window-rewrite": {
+            "brave": "",
+            "kitty": "",
+            "keepass": "",
+            "nautilus": "",
+            "code": "",
+            "discord": "",
+            "steam": "",
+            "pavucontrol": ""
+        }
+    },
+    "hyprland/submap": {
+        "format": "✌️ {}",
+        "max-length": 8,
+        "tooltip": false
+    },
+    "tray": {
+        "show-passive-items": true,
+        "icon-size": 16,
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{:%d-%m-%Y %H:%M}",
+        "tooltip": false
+    },
+    "cpu": {
+        "format": "{usage}% "
+    },
+    "memory": {
+        "format": "{used:0.1f}G/{total:0.1f}G "
+    },
+    "network": {
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-disconnected": "Disconnected ⚠"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "headset": "󰋎",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+        "format": "",
+        "tooltip": "Power Menu",
+        "on-click": "~/.config/waybar/scripts/power_menu.sh"
+    },
+    "custom/nvidia_gpu" :{
+        "exec": "~/.config/waybar/scripts/nvidia-gpu.sh",
+        "interval": 10,
+        "format": "{text}",
+        "return-type": "json"
+    }
+}
